@@ -1,0 +1,346 @@
+# Eval report: Claude Sonnet 5.5 answers
+
+Run at 2026-11-18 01:23 UTC - answer model `anthropic/claude-sonnet-5.5`, judge `anthropic/claude-sonnet-5.5`, embedder `sentence-transformers/all-MiniLM-L6-v2`, reranker `cross-encoder/ms-marco-MiniLM-L6-v2`, top-k 6, LLM backend `api` via https://openrouter.ai/api.
+
+33 questions (26 answerable, 7 unanswerable). 52 of 52 citations verified.
+
+## Headline metrics
+
+| Metric | Value |
+|---|---|
+| Answer correctness (LLM judge) | 94.2% |
+| Citation faithfulness (code-checked) | 100.0% |
+| Answers with every citation verified | 100.0% |
+| Abstention on unanswerable questions | 100.0% |
+| False abstention on answerable questions | 3.8% |
+| Mean latency per question | 4.8 s |
+| Tokens (input / output) | 78,189 / 5,966 |
+
+## Retrieval (answerable questions, gold evidence in top k)
+
+| Retriever | hit@1 | hit@3 | hit@5 | MRR |
+|---|---|---|---|---|
+| BM25 only | 73.1% | 88.5% | 100.0% | 0.813 |
+| Dense only (MiniLM) | 61.5% | 80.8% | 92.3% | 0.730 |
+| Hybrid (BM25 + dense, RRF) | 76.9% | 92.3% | 100.0% | 0.849 |
+| Hybrid + cross-encoder rerank (default) | 80.8% | 96.2% | 96.2% | 0.872 |
+
+## Per question
+
+| id | expected | hit rank | outcome | verified cites | verdict |
+|---|---|---|---|---|---|
+| ssp-01 | answerable | 1 | answered | 2/2 | correct |
+| ssp-02 | answerable | 1 | answered | 3/3 | partially_correct |
+| ssp-03 | answerable | 1 | answered | 1/1 | correct |
+| hol-01 | answerable | 1 | answered | 1/1 | correct |
+| hol-02 | answerable | 1 | answered | 3/3 | correct |
+| hol-03 | answerable | 1 | answered | 2/2 | correct |
+| hol-04 | answerable | 3 | answered | 3/3 | correct |
+| hol-05 | answerable | 1 | answered | 2/2 | correct |
+| hol-06 | answerable | 1 | answered | 2/2 | correct |
+| flex-01 | answerable | 2 | answered | 2/2 | correct |
+| flex-02 | answerable | 1 | answered | 1/1 | correct |
+| flex-03 | answerable | 1 | answered | 3/3 | correct |
+| red-01 | answerable | 3 | answered | 1/1 | correct |
+| red-02 | answerable | 1 | answered | 1/1 | correct |
+| red-03 | answerable | 1 | answered | 4/4 | correct |
+| hours-01 | answerable | 1 | answered | 2/2 | correct |
+| hours-02 | answerable | 1 | answered | 3/3 | correct |
+| csf-01 | answerable | 2 | answered | 3/3 | correct |
+| csf-02 | answerable | 1 | answered | 2/2 | correct |
+| csf-03 | answerable | miss | abstained | - | incorrect |
+| csf-04 | answerable | 1 | answered | 3/3 | correct |
+| ir-01 | answerable | 1 | answered | 1/1 | correct |
+| ir-02 | answerable | 1 | answered | 1/1 | correct |
+| ir-03 | answerable | 1 | answered | 2/2 | correct |
+| style-01 | answerable | 1 | answered | 3/3 | correct |
+| style-02 | answerable | 1 | answered | 1/1 | correct |
+| na-01 | unanswerable | - | abstained | - | correct abstention |
+| na-02 | unanswerable | - | abstained | - | correct abstention |
+| na-03 | unanswerable | - | abstained | - | correct abstention |
+| na-04 | unanswerable | - | abstained | - | correct abstention |
+| na-05 | unanswerable | - | abstained | - | correct abstention |
+| na-06 | unanswerable | - | abstained | - | correct abstention |
+| na-07 | unanswerable | - | abstained | - | correct abstention |
+
+## Answers
+
+### ssp-01: How much Statutory Sick Pay can an employee get each week, and for how long is it paid?
+
+An eligible employee can get £123.25 per week in Statutory Sick Pay, or 80% of normal weekly earnings if that is lower [1]. It is paid for up to 28 weeks [2].
+
+- [1] GOV.UK: Statutory Sick Pay (SSP), 2. What you'll get (verified): "you can get £123.25 a week Statutory Sick Pay (SSP) or 80% of your normal weekly earnings - whichever is lower."
+- [2] GOV.UK: Statutory Sick Pay (SSP), 1. Overview (verified): "It’s paid by your employer for up to 28 weeks."
+
+Judge: **correct** - The candidate gives the same weekly rate of £123.25, the same 80% of normal weekly earnings if lower, and the same maximum duration of 28 weeks as the reference. It omits that the employer pays, which is a minor detail, and nothing in it contradicts the reference.
+
+### ssp-02: I've been off ill for more than a week. What proof does my employer need from me?
+
+If you are off work for more than 7 days in a row (including non-working days), you must give your employer a fit note [1]. You can get one from a GP or hospital doctor, registered nurse, occupational therapist, pharmacist or physiotherapist [2]. The note can be printed or digital [3].
+
+- [1] GOV.UK: Statutory Sick Pay (SSP), 3. Eligibility > Fit notes and asking for proof (verified): "You must give your employer a fit note if you’re off work for more than 7 days in a row (including non-working days)."
+- [2] GOV.UK: Statutory Sick Pay (SSP), 3. Eligibility > Fit notes and asking for proof (verified): "GP or hospital doctor
+- registered nurse
+- occupational therapist
+- pharmacist
+- physiotherapist"
+- [3] GOV.UK: Statutory Sick Pay (SSP), 3. Eligibility > Fit notes and asking for proof (verified): "The note can be printed or digital."
+
+Judge: **partially_correct** - The candidate gives the 7-days-in-a-row rule including non-working days, the fit note requirement, and the full list of professionals who can issue it. It omits that the employer can agree to another form of evidence, which is a minor part of the reference, and the added claim about printed or digital notes does not contradict it.
+
+### ssp-03: If my sick pay is expected to end before my sickness does, when must my employer send me form SSP1?
+
+If your SSP is expected to end before your sickness does, your employer must send you form SSP1 on or before the beginning of the 23rd week of your SSP [1].
+
+- [1] GOV.UK: Statutory Sick Pay (SSP), 3. Eligibility > If you’re not eligible or your SSP ends (verified): "on or before the beginning of the 23rd week, if your SSP is expected to end before your sickness does"
+
+Judge: **correct** - The candidate states the form SSP1 must be sent on or before the beginning of the 23rd week of SSP, which matches the reference answer exactly.
+
+### hol-01: What is the minimum paid annual leave for someone who works a 5-day week?
+
+Most workers who work a 5-day week must receive at least 28 days' paid annual leave a year [1]. This is equivalent to 5.6 weeks of holiday [1].
+
+- [1] GOV.UK: Holiday entitlement, 1. Entitlement > Statutory annual leave entitlement (verified): "Most workers who work a 5-day week must receive at least 28 days’ paid annual leave a year. This is the equivalent of 5.6 weeks of holiday."
+
+Judge: **correct** - The candidate states the minimum is 28 days' paid annual leave, equivalent to 5.6 weeks, matching the reference; the 'most workers' qualifier is harmless extra detail and does not contradict it.
+
+### hol-02: How many days of untaken holiday can a worker with 28 days' leave carry over into the next year?
+
+A worker who gets 28 days' leave can carry over a maximum of 8 days into the next year [1]. The exception is a worker who could not take leave because of sickness, who can carry over up to 20 of their 28 days if they work regular hours for the whole year, or up to 28 days if they work irregular hours or for part of the year [2]. Workers who could not take leave because of family-related leave such as parental leave can carry over their untaken leave [2].
+
+- [1] GOV.UK: Holiday entitlement, 2. Calculate leave entitlement > Carrying over leave (verified): "If a worker gets 28 days’ leave, they can carry over a maximum of 8 days."
+- [2] GOV.UK: Holiday entitlement, 2. Calculate leave entitlement > Carrying over leave > Workers on parental or sick leave (verified): "up to 20 of their 28 days’ leave entitlement if they work regular hours for the whole year"
+- [3] GOV.UK: Holiday entitlement, 2. Calculate leave entitlement > Carrying over leave > Workers on parental or sick leave (verified): "they can carry over their untaken leave into next year."
+
+Judge: **correct** - The candidate gives the key fact of a maximum of 8 days and notes the sickness and family leave exceptions, matching the reference. The extra detail about 20 or 28 days for sickness is not contradicted by the reference, and the contract-based carry-over exception is omitted but is a minor part.
+
+### hol-03: How much notice should a worker give if they want to take one day off as holiday?
+
+A worker should give at least twice as long as the leave they want, plus 1 day, so 3 days' notice for 1 day's leave [1]. This applies generally, but if the contract says something different about notice, the contract applies [2].
+
+- [1] GOV.UK: Holiday entitlement, 4. Booking time off (verified): "The general notice period for taking leave is at least twice as long as the amount of leave a worker wants to take, plus 1 day. For example, a worker would give 3 days’ notice for 1 day’s leave."
+- [2] GOV.UK: Holiday entitlement, 4. Booking time off (verified): "If the contract says something different about the notice a worker or employer should give, what’s in the contract will apply."
+
+Judge: **correct** - The candidate states the same rule as the reference (twice the leave plus 1 day, so 3 days' notice for 1 day's leave). The added note about the contract applying is extra detail that does not contradict the reference.
+
+### hol-04: How is holiday entitlement worked out for irregular-hours workers?
+
+Irregular-hours workers are entitled to up to 5.6 weeks of statutory leave, which they accrue based on hours already worked rather than getting a fixed number of days or hours [1]. Employers must use a specific accrual system, under which entitlement is 12.07% of the hours worked in a pay period, rounded up to the nearest hour if it is 0.5 of an hour or more [2]. For leave years that began on or before 31 March 2024, the system does not need to be used until the leave year renews [3].
+
+- [1] GOV.UK: Holiday entitlement, 1. Entitlement > Statutory annual leave entitlement > Working irregular hours or for part of the year (verified): "People working irregular hours or part of the year are entitled to up to 5.6 weeks statutory leave."
+- [2] GOV.UK: Holiday entitlement, 2. Calculate leave entitlement > Accrual system > Irregular-hours or part-year workers (verified): "Their entitlement will be 12.07% of the hours they worked in a pay period. It must be rounded up to the nearest hour if the entitlement is 0.5 of an hour or more."
+- [3] GOV.UK: Holiday entitlement, 2. Calculate leave entitlement > Accrual system > Irregular-hours or part-year workers (verified): "If their leave year began on or before 31 March 2024, employers do not need to use this system until their leave year renews."
+
+Judge: **correct** - The candidate states the key fact of the reference: 12.07% of hours worked in each pay period, rounded up to the nearest hour if 0.5 of an hour or more. The extra details about 5.6 weeks and the transitional rule do not contradict the reference.
+
+### hol-05: From April 2026, how long do employers have to keep records of annual leave and holiday pay?
+
+From 6 April 2026, employers must keep records of annual leave and holiday pay for a minimum of 6 years from the date the records were made [1]. For example, they should document the number of annual leave days taken and how much holiday pay is paid [1].
+
+- [1] GOV.UK: Holiday entitlement, 3. Holiday pay > Keeping records (verified): "From 6 April 2026, employers must keep detailed records of annual leave and holiday pay for a minimum of 6 years from the date they were made."
+- [2] GOV.UK: Holiday entitlement, 3. Holiday pay > Keeping records (verified): "they should document the number of annual leave days taken and how much holiday pay is paid"
+
+Judge: **correct** - The candidate states the same key facts as the reference: from 6 April 2026, records must be kept for a minimum of 6 years from the date they were made. The added example about documenting leave days taken and holiday pay paid does not contradict the reference.
+
+### hol-06: Can my employer count bank holidays as part of my statutory leave?
+
+Yes. Bank holidays do not have to be given as paid leave, but an employer can choose to include them as part of a worker's statutory annual leave [1]. This is also confirmed in the general entitlement section [2].
+
+- [1] GOV.UK: Holiday entitlement, 1. Entitlement > Statutory annual leave entitlement > Bank holidays (verified): "An employer can choose to include bank holidays as part of a worker’s statutory annual leave."
+- [2] GOV.UK: Holiday entitlement, 1. Entitlement (verified): "An employer can include bank holidays as part of statutory annual leave."
+
+Judge: **correct** - The candidate states that bank holidays need not be given as paid leave but the employer may include them in statutory annual leave, which matches the reference answer's key facts and adds nothing contradictory.
+
+### flex-01: From when can an employee ask for flexible working, and how many requests can they make in a year?
+
+Employees can ask for flexible working from their first day in a job [1]. They can make 2 applications for flexible working in any 12-month period [2].
+
+- [1] GOV.UK: Flexible working, 1. Overview (verified): "Employees can make a request for flexible working from their first day in a job."
+- [2] GOV.UK: Flexible working, 3. Applying for flexible working (verified): "Employees can make 2 applications for flexible working in any 12-month period."
+
+Judge: **correct** - The candidate states both key facts from the reference: flexible working can be requested from the first day in a job, and up to 2 applications are allowed in any 12-month period. There are no contradictions.
+
+### flex-02: How long does an employer have to make a decision on a flexible working request?
+
+An employer must make a decision within 2 months of the request [1]. This can be longer if the employer and employee agree to that [1].
+
+- [1] GOV.UK: Flexible working, 4. After the application (verified): "They must make a decision within 2 months of the request (or longer if agreed with the employee)."
+
+Judge: **correct** - The candidate states the 2-month decision deadline and that it can be extended by agreement between employer and employee, matching both key facts in the reference answer.
+
+### flex-03: What business reasons can an employer give for turning down a flexible working request?
+
+An employer can refuse a flexible working request for any of eight reasons: extra costs that will damage the business, work that cannot be reorganised among other staff, being unable to recruit people to do the work, an effect on quality, an effect on performance, being unable to meet customer demand, a lack of work during the proposed working times, or planned workforce changes [1]. The employer must also have discussed the request with the employee before refusing it [1]. The refusal must give the business reasons to the employee [2].
+
+- [1] GOV.UK: Flexible working, 4. After the application > Refusing the application > Reasons for refusing (verified): "Employers can refuse an application for any of the following reasons:"
+- [2] GOV.UK: Flexible working, 4. After the application > Refusing the application > Reasons for refusing (verified): "Before refusing it, they must have discussed the employee’s request with them."
+- [3] GOV.UK: Flexible working, 3. Applying for flexible working (verified): "If the employer disagrees, they must tell the employee giving the business reasons for the refusal."
+
+Judge: **correct** - The candidate lists all eight business reasons from the reference (extra costs, cannot reorganise work, cannot recruit, quality, performance, customer demand, lack of work, planned workforce changes). The added points about discussing the request first and giving reasons do not contradict the reference.
+
+### red-01: How long do I need to have worked for my employer to qualify for statutory redundancy pay?
+
+You will normally be entitled to statutory redundancy pay if you are an employee and have worked for your current employer for 2 years or more [1].
+
+- [1] GOV.UK: Redundancy: your rights, 3. Statutory redundancy pay (verified): "You’ll normally be entitled to statutory redundancy pay if you’re an employee and you’ve been working for your current employer for 2 years or more."
+
+Judge: **correct** - The candidate states the same key fact as the reference: an employee needs 2 years or more of service with their current employer to qualify for statutory redundancy pay. It contradicts nothing in the reference.
+
+### red-02: What is the maximum statutory redundancy pay for someone made redundant on or after 6 April 2026?
+
+For someone made redundant on or after 6 April 2026, the maximum statutory redundancy pay is £22,530 [1]. Weekly pay is capped at £751 for the calculation [1].
+
+- [1] GOV.UK: Redundancy: your rights, 3. Statutory redundancy pay (verified): "your weekly pay is capped at £751 and the maximum statutory redundancy pay you can get is £22,530"
+
+Judge: **correct** - The candidate states the maximum statutory redundancy pay as £22,530 and the weekly pay cap as £751, matching both key facts in the reference answer with no contradictions.
+
+### red-03: How is statutory redundancy pay calculated based on age?
+
+Statutory redundancy pay depends on your age in each full year of service. You get half a week's pay for each full year you were under 22, one week's pay for each full year you were 22 or older but under 41, and one and a half weeks' pay for each full year you were 41 or older [1]. Length of service is capped at 20 years, and weekly pay is the average you earned per week over the 12 weeks before you got your redundancy notice [2][3]. For redundancies on or after 6 April 2026, weekly pay is capped at £751 and the maximum payment is £22,530 [4].
+
+- [1] GOV.UK: Redundancy: your rights, 3. Statutory redundancy pay (verified): "half a week’s pay for each full year you were under 22"
+- [2] GOV.UK: Redundancy: your rights, 3. Statutory redundancy pay (verified): "Length of service is capped at 20 years."
+- [3] GOV.UK: Redundancy: your rights, 3. Statutory redundancy pay (verified): "Your weekly pay is the average you earned per week over the 12 weeks before the day you got your redundancy notice."
+- [4] GOV.UK: Redundancy: your rights, 3. Statutory redundancy pay (verified): "your weekly pay is capped at £751 and the maximum statutory redundancy pay you can get is £22,530"
+
+Judge: **correct** - The candidate states all key facts of the reference: half a week's pay under 22, one week for 22 to 40 (22 or older but under 41), one and a half weeks for 41 and older, and the 20-year service cap. The extra details on weekly pay averaging and the 2026 caps do not contradict the reference.
+
+### hours-01: Over what period are average weekly working hours normally calculated for the 48-hour limit?
+
+Average weekly working hours are normally calculated over a 17-week reference period [1]. That period can be extended to a maximum of 52 weeks if this is agreed, for example by a trade union [2].
+
+- [1] GOV.UK: Maximum weekly working hours, 2. Calculating your working hours (verified): "Average working hours are calculated over a ‘reference’ period, normally 17 weeks."
+- [2] GOV.UK: Maximum weekly working hours, 2. Calculating your working hours (verified): "The 17 week period can be extended to a maximum of 52 weeks if this is agreed, for example, by a trade union."
+
+Judge: **correct** - The candidate gives the 17-week normal reference period and the extension to a maximum of 52 weeks by agreement (e.g. a trade union), matching the reference answer with no contradictions.
+
+### hours-02: I signed an opt-out from the 48-hour week. How much notice do I have to give to cancel it?
+
+You must give your employer at least 7 days' notice to cancel your opt-out agreement [1]. Depending on what your agreement says, you may have to give up to 3 months' notice [1]. Check your agreement for the exact period, as the example agreement refers to notice in writing [2].
+
+- [1] GOV.UK: Maximum weekly working hours, 3. Opting out of the 48 hour week > Cancelling an opt-out agreement (verified): "You must give your employer at least 7 days’ notice."
+- [2] GOV.UK: Maximum weekly working hours, 3. Opting out of the 48 hour week > Cancelling an opt-out agreement (verified): "You may have to give your employer up to 3 months’ notice depending on what’s in your agreement."
+- [3] GOV.UK: Maximum weekly working hours, 3. Opting out of the 48 hour week (verified): "I will give my employer [amount of time - up to 3 months’] notice in writing to end this agreement."
+
+Judge: **correct** - The candidate states the minimum of 7 days' notice and the possible maximum of 3 months depending on the agreement, matching the reference; the added advice to check the agreement is consistent and does not contradict it.
+
+### csf-01: What are the six Functions of the NIST CSF 2.0 Core?
+
+The six CSF 2.0 Core Functions are GOVERN, IDENTIFY, PROTECT, DETECT, RESPOND, and RECOVER [1]. They organize cybersecurity outcomes at the highest level [1]. In brief: Govern establishes strategy and policy, Identify understands current risks, Protect uses safeguards, Detect finds and analyzes possible attacks, Respond takes action on detected incidents, and Recover restores affected assets and operations [2].
+
+- [1] NIST Cybersecurity Framework (CSF) 2.0, page 8 (verified): "The CSF Core Functions — GOVERN, IDENTIFY, PROTECT, DETECT, RESPOND, and RECOVER — organize"
+- [2] NIST SP 800-61r3 Incident Response Recommendations, page 13 (verified): "which organize cybersecurity outcomes at their highest level"
+- [3] NIST SP 800-61r3 Incident Response Recommendations, page 13 (verified): "Recover (RC): Assets and operations affected by a cybersecurity incident are restored."
+
+Judge: **correct** - The candidate lists all six Functions (Govern, Identify, Protect, Detect, Respond, Recover) exactly as in the reference; the added brief descriptions do not contradict it.
+
+### csf-02: Name the four CSF Tiers.
+
+The four CSF Tiers are Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4) [1]. They characterize the rigor of an organization's cybersecurity risk governance and management practices [2].
+
+- [1] NIST Cybersecurity Framework (CSF) 2.0, page 31 (verified): "There are four Tiers: Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4)."
+- [2] NIST Cybersecurity Framework (CSF) 2.0, page 31 (verified): "A characterization of the rigor of an organization’s cybersecurity risk governance and management practices."
+
+Judge: **correct** - The candidate lists all four tiers (Partial, Risk Informed, Repeatable, Adaptive) with the correct tier numbers, matching the reference exactly; the extra description of the tiers does not contradict it.
+
+### csf-03: What was the Cybersecurity Framework called before version 2.0?
+
+The documents provided do not say what the Cybersecurity Framework was called before version 2.0. They mention that CSF 2.0 builds on previous versions and offers guidance on transitioning from them, but no earlier name is given.
+
+
+Judge: **incorrect** - System abstained on an answerable question.
+
+### csf-04: What is the difference between a Current Profile and a Target Profile in the CSF?
+
+A Current Profile specifies the Core outcomes an organization is currently achieving (or attempting to achieve) and how or to what extent each is being achieved [1]. A Target Profile specifies the desired outcomes the organization has selected and prioritized for its cybersecurity risk management objectives, and it considers anticipated changes such as new requirements, new technology adoption, and threat intelligence trends [2]. The gaps between the two are then analyzed to create a prioritized action plan [3].
+
+- [1] NIST Cybersecurity Framework (CSF) 2.0, page 11 (verified): "A Cur
+rent Profile specifies the Core outcomes that an organization is currently achieving
+(or attempting to achieve) and characterizes how or to what extent each outcome is
+being achieved."
+- [2] NIST Cybersecurity Framework (CSF) 2.0, page 11 (verified): "A Target Profile specifies the desired outcomes that an organization has selected and
+prioritized for achieving its cybersecurity risk management objectives."
+- [3] NIST Cybersecurity Framework (CSF) 2.0, page 12 (verified): "Conduct a gap analysis to identify and analyze the differences between the Current and
+Target Profiles, and develop a prioritized action plan"
+
+Judge: **correct** - The candidate matches the reference definitions of Current Profile (outcomes currently achieved or attempted, and how well) and Target Profile (desired outcomes selected and prioritized for risk management objectives). The extra details about anticipated changes and gap analysis are consistent with the CSF and do not contradict the reference.
+
+### ir-01: Which CSF 2.0 Functions map to the 'Containment, Eradication & Recovery' phase of the previous incident response life cycle?
+
+According to Table 1, the previous 'Containment, Eradication & Recovery' phase corresponds to the Respond and Recover Functions, along with the Improvement Category of the Identify Function [1].
+
+- [1] NIST SP 800-61r3 Incident Response Recommendations, page 14 (verified): "Containment, Eradication & Recovery Respond Recover Identify (Improvement Category)"
+
+Judge: **correct** - The candidate names Respond and Recover plus the Identify Function's Improvement Category, which matches every element of the reference answer with no contradictions.
+
+### ir-02: According to NIST SP 800-61r3, what do incident handlers do?
+
+Incident handlers verify that an incident has occurred, collect and analyze data and evidence, and prioritize incident response activities [1]. They act to limit damage, find root causes, and restore operations [1]. They also often give input to others on mitigating cybersecurity issues and improving resiliency [1].
+
+- [1] NIST SP 800-61r3 Incident Response Recommendations, page 15 (verified): "Incident handlers verify that an incident has occurred, collect and
+analyze data and evidence, prioritize incident response activities, and act appropriately
+to limit damage, find root causes, and restore operations."
+
+Judge: **correct** - The candidate covers every key element of the reference: verifying an incident, collecting and analyzing data and evidence, prioritizing response activities, limiting damage, finding root causes, restoring operations, and advising others on mitigation and resiliency. It contains no contradictions.
+
+### ir-03: What key elements do most incident response policies include?
+
+Most incident response policies include the same key elements: a statement of management commitment, the purpose and objectives of the policy, and its scope [1]. They also typically include definitions of events, incidents, investigations and related terms; roles, responsibilities and authorities; guidelines for prioritizing incidents, estimating severity, initiating recovery and restoring operations; and performance measures [2].
+
+- [1] NIST SP 800-61r3 Incident Response Recommendations, page 16 (verified): "most incident response policies include the same key elements:"
+- [2] NIST SP 800-61r3 Incident Response Recommendations, page 17 (verified): "Definition of events, cybersecurity incidents, investigations, and related terms"
+
+Judge: **correct** - The candidate lists all the reference elements: management commitment, purpose and objectives, scope, definitions, roles and responsibilities, guidelines for prioritizing, severity and recovery, and performance measures. The extra details (investigations, restoring operations) do not contradict the reference.
+
+### style-01: In body copy, when should numbers be spelled out according to the 18F content guide?
+
+In body copy, 18F spells out numbers one through nine and uses numerals for 10 and greater [1]. The same applies to ordinals: first to ninth are spelled out, while 10th or greater use numerals [2]. Titles, subheadings, and interface labels are different, since they use numerals instead of spelled-out numbers [3].
+
+- [1] 18F Content Guide: Numbers and percentages, Numbers, percentages, and dates > Numbers (verified): "In body copy, we prefer to spell out numbers one through nine, and use numerals for numbers 10 and greater."
+- [2] 18F Content Guide: Numbers and percentages, Numbers, percentages, and dates > Numbers (verified): "Spell out first to ninth, and capture 10th or greater with numerals."
+- [3] 18F Content Guide: Numbers and percentages, Numbers, percentages, and dates > Numbers (verified): "In titles, subheadings, and interface labels, we use numerals instead of spelling out numbers."
+
+Judge: **correct** - The candidate matches the reference: spell out one through nine and use numerals for 10 and greater, with ordinals following the same rule (first to ninth spelled out). The extra claim about titles, subheadings, and interface labels using numerals does not contradict the reference.
+
+### style-02: Does 18F want a comma before 'and' at the end of a list?
+
+Yes. 18F uses the serial comma (Oxford comma), so in a list of three or more items a comma goes before the conjunction [1]. The guide's example is: apples, bananas, and naan chips [1].
+
+- [1] 18F Content Guide: Punctuation, Punctuation > Commas (verified): "In a list of three or more, include a comma before the conjunction."
+
+Judge: **correct** - The candidate says yes, 18F uses the serial (Oxford) comma before the conjunction in lists of three or more items, which matches the reference. The added example does not contradict it.
+
+### na-01: What is the weekly rate of Statutory Maternity Pay?
+
+The documents provided do not give the weekly rate of Statutory Maternity Pay. They mention it only in passing, as a reason someone would not qualify for SSP, and otherwise cover Statutory Sick Pay, holiday entitlement and redundancy pay.
+
+
+### na-02: What is the National Minimum Wage for workers aged 21 and over?
+
+The documents provided do not cover the National Minimum Wage. They deal with statutory redundancy pay, the 48 hour week opt-out, holiday pay, flexible working and Statutory Sick Pay.
+
+
+### na-03: Within how many hours must an organization report a cybersecurity incident to CISA?
+
+The documents provided do not state any deadline in hours for reporting an incident to CISA. They mention CISA only as the source of incident response playbooks, and they cover incident response recommendations, the life cycle model, and CSF 2.0 Functions.
+
+
+### na-04: What minimum password length does NIST recommend?
+
+The documents provided do not state any minimum password length. They only touch on identity and access management at a high level (e.g., PR.AA categories), along with authority notes, references, and service provider risk.
+
+
+### na-05: Which font does the 18F content guide recommend for body text?
+
+The documents provided do not say which font to use for body text. They cover topics such as structuring content, sentence length, punctuation, capitalization of headings, and using HTML for web content.
+
+
+### na-06: How many days of paid bereavement leave must an employer give?
+
+The documents provided do not say how many days of paid bereavement leave an employer must give. They cover holiday entitlement (notice, pay, carrying over leave and payment in lieu) and Statutory Sick Pay fit notes, but not bereavement leave.
+
+
+### na-07: How much is the fine for an employer that does not keep holiday records?
+
+The documents do not state the amount of any fine. They only say that employers may have to pay a fine if they cannot show that they keep holiday records, and that records must be kept for at least 6 years from 6 April 2026.
+
