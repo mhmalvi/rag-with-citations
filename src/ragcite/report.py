@@ -89,10 +89,11 @@ def render_markdown(run: dict[str, Any], retrieval: dict[str, dict[str, float]])
 
 def _meta_line(meta: dict[str, Any]) -> str:
     """One-line description of models and settings."""
+    via = f" via {meta['base_url']}" if meta.get("base_url") else ""
     return (
         f"Run at {meta['timestamp']} - answer model `{meta['answer_model']}`, judge `{meta['judge_model']}`, "
         f"embedder `{meta['embed_model']}`, reranker `{meta['rerank_model']}`, top-k {meta['final_k']}, "
-        f"LLM backend `{meta.get('llm_backend', 'api')}`."
+        f"LLM backend `{meta.get('llm_backend', 'api')}`{via}."
     )
 
 

@@ -93,6 +93,7 @@ def write_reports(out: Path, name: str, settings: Settings, results: list, retri
         "rerank_model": settings.rerank_model,
         "final_k": settings.final_k,
         "llm_backend": settings.llm_backend,
+        "base_url": settings.base_url or "https://api.anthropic.com",
     }
     summary = summarize(results)
     run = results_to_json(summary, results, meta) | {"retrieval": retrieval}
@@ -104,6 +105,16 @@ def write_reports(out: Path, name: str, settings: Settings, results: list, retri
         f"correctness {pct(summary.correctness)} | faithfulness {pct(summary.citation_faithfulness)} | "
         f"abstention {pct(summary.abstention_accuracy)} | wrote {out}/report.md and report.html"
     )
+
+
+def cmd_report(args: argparse.Namespace, settings: Settings) -> int:
+    """Re-render report.md and report.html from a saved results.json (no model calls)."""
+    source = Path(args.results)
+    run = json.loads(source.read_text())
+    (source.parent / "report.md").write_text(render_markdown(run, run["retrieval"]))
+    (source.parent / "report.html").write_text(render_html(run, run["retrieval"]))
+    print(f"wrote {source.parent}/report.md and report.html")
+    return 0
 
 
 def cmd_serve(args: argparse.Namespace, settings: Settings) -> int:
@@ -131,13 +142,15 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--out", default="docs/eval")
     run.add_argument("--name", default="default")
     run.add_argument("--limit", type=int, default=0)
+    report = sub.add_parser("report", help="re-render reports from a saved results.json")
+    report.add_argument("results")
     serve = sub.add_parser("serve", help="start the web UI")
     serve.add_argument("--host", default="127.0.0.1")
     serve.add_argument("--port", type=int, default=8000)
     return parser
 
 
-COMMANDS = {"ingest": cmd_ingest, "ask": cmd_ask, "eval": cmd_eval, "serve": cmd_serve}
+COMMANDS = {"ingest": cmd_ingest, "ask": cmd_ask, "eval": cmd_eval, "report": cmd_report, "serve": cmd_serve}
 
 
 def main(argv: list[str] | None = None) -> int:
