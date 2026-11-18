@@ -1,0 +1,32 @@
+{
+  "description": "Public evaluation corpus for rag-with-citations. Every file is public domain or open-licensed; see licence per entry.",
+  "licences": {
+    "us-gov-public-domain": "Work of the U.S. federal government, not subject to copyright in the United States (17 U.S.C. 105).",
+    "cc0-1.0": "U.S. federal government work, plus a worldwide CC0 1.0 public domain dedication by 18F (https://github.com/18F/content-guide/blob/18f-pages/LICENSE.md).",
+    "ogl-v3": "Open Government Licence v3.0 (https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/). Contains public sector information licensed under the Open Government Licence v3.0. Crown copyright."
+  },
+  "files": [
+    {"path": "files/nist-csf-2.0.pdf", "url": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf", "title": "NIST Cybersecurity Framework (CSF) 2.0", "licence": "us-gov-public-domain"},
+    {"path": "files/nist-sp-800-61r3.pdf", "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf", "title": "NIST SP 800-61r3 Incident Response Recommendations", "licence": "us-gov-public-domain"},
+    {"path": "files/govuk-holiday-entitlement.html", "url": "https://www.gov.uk/holiday-entitlement-rights/print", "title": "GOV.UK: Holiday entitlement", "licence": "ogl-v3"},
+    {"path": "files/govuk-statutory-sick-pay.html", "url": "https://www.gov.uk/statutory-sick-pay/print", "title": "GOV.UK: Statutory Sick Pay (SSP)", "licence": "ogl-v3"},
+    {"path": "files/govuk-flexible-working.html", "url": "https://www.gov.uk/flexible-working/print", "title": "GOV.UK: Flexible working", "licence": "ogl-v3"},
+    {"path": "files/govuk-redundancy-rights.html", "url": "https://www.gov.uk/redundant-your-rights/print", "title": "GOV.UK: Redundancy: your rights", "licence": "ogl-v3"},
+    {"path": "files/govuk-maximum-working-hours.html", "url": "https://www.gov.uk/maximum-weekly-working-hours/print", "title": "GOV.UK: Maximum weekly working hours", "licence": "ogl-v3"},
+    {"path": "files/18f-address-the-user.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-approach/address-the-user.md", "title": "18F Content Guide: Address the user", "licence": "cc0-1.0"},
+    {"path": "files/18f-avoid-duplication.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-approach/avoid-duplication.md", "title": "18F Content Guide: Avoid duplication", "licence": "cc0-1.0"},
+    {"path": "files/18f-be-concise.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-approach/be-concise.md", "title": "18F Content Guide: Be concise", "licence": "cc0-1.0"},
+    {"path": "files/18f-gather-feedback.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-approach/gather-feedback.md", "title": "18F Content Guide: Gather feedback", "licence": "cc0-1.0"},
+    {"path": "files/18f-keep-refining.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-approach/keep-refining.md", "title": "18F Content Guide: Keep refining", "licence": "cc0-1.0"},
+    {"path": "files/18f-make-content-web-friendly.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-approach/make-content-web-friendly.md", "title": "18F Content Guide: Make content web-friendly", "licence": "cc0-1.0"},
+    {"path": "files/18f-plain-language.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-approach/plain-language.md", "title": "18F Content Guide: Plain language", "licence": "cc0-1.0"},
+    {"path": "files/18f-structure-the-content.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-approach/structure-the-content.md", "title": "18F Content Guide: Structure the content", "licence": "cc0-1.0"},
+    {"path": "files/18f-active-voice.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-style/active-voice.md", "title": "18F Content Guide: Active voice", "licence": "cc0-1.0"},
+    {"path": "files/18f-capitalization.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-style/capitalization.md", "title": "18F Content Guide: Capitalization", "licence": "cc0-1.0"},
+    {"path": "files/18f-inclusive-language.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-style/inclusive-language.md", "title": "18F Content Guide: Inclusive language", "licence": "cc0-1.0"},
+    {"path": "files/18f-numbers-and-percentages.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-style/numbers-and-percentages.md", "title": "18F Content Guide: Numbers and percentages", "licence": "cc0-1.0"},
+    {"path": "files/18f-punctuation.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-style/punctuation.md", "title": "18F Content Guide: Punctuation", "licence": "cc0-1.0"},
+    {"path": "files/18f-voice-and-tone.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-style/voice-and-tone.md", "title": "18F Content Guide: Voice and tone", "licence": "cc0-1.0"},
+    {"path": "files/18f-abbreviations-and-acronyms.md", "url": "https://raw.githubusercontent.com/18F/content-guide/18f-pages/_pages/our-style/abbreviations-and-acronyms.md", "title": "18F Content Guide: Abbreviations and acronyms", "licence": "cc0-1.0"}
+  ]
+}
